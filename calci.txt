@@ -1,0 +1,176 @@
+package com.example.calculator;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    Button zero,one,two,three,four,five,six,seven,eight,nine,minus,mul,plus,div,equal,clear;
+    EditText tresult;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        one=(Button)findViewById(R.id.bt1);
+        one.setOnClickListener(this);
+
+        two=(Button)findViewById(R.id.bt2);
+        two.setOnClickListener(this);
+
+        three=(Button)findViewById(R.id.bt3);
+        three.setOnClickListener(this);
+
+        four=(Button)findViewById(R.id.bt4);
+        four.setOnClickListener(this);
+
+        five=(Button)findViewById(R.id.bt5);
+        five.setOnClickListener(this);
+
+        six=(Button)findViewById(R.id.bt6);
+        six.setOnClickListener(this);
+
+        seven=(Button)findViewById(R.id.bt7);
+        seven.setOnClickListener(this);
+
+        eight=(Button)findViewById(R.id.bt8);
+        eight.setOnClickListener(this);
+
+        nine=(Button)findViewById(R.id.bt9);
+        nine.setOnClickListener(this);
+
+        zero=(Button)findViewById(R.id.bt10);
+        zero.setOnClickListener(this);
+
+        plus=(Button)findViewById(R.id.bt11);
+        plus.setOnClickListener(this);
+
+        minus=(Button)findViewById(R.id.bt12);
+        minus.setOnClickListener(this);
+
+        mul=(Button)findViewById(R.id.bt13);
+        mul.setOnClickListener(this);
+
+        div=(Button)findViewById(R.id.bt14);
+        div.setOnClickListener(this);
+
+        clear=(Button)findViewById(R.id.bt15);
+        clear.setOnClickListener(this);
+
+        equal=(Button)findViewById(R.id.bt16);
+        equal.setOnClickListener(this);
+
+
+       tresult=(EditText)findViewById(R.id.result);
+       tresult.setText("");
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
+        if (view.equals(one))
+            tresult.append("1");
+
+        if (view.equals(two))
+            tresult.append("2");
+
+        if (view.equals(three))
+            tresult.append("3");
+
+        if (view.equals(four))
+            tresult.append("4");
+
+        if (view.equals(five))
+            tresult.append("5");
+
+        if (view.equals(six))
+            tresult.append("6");
+
+        if (view.equals(seven))
+            tresult.append("7");
+
+        if (view.equals(eight))
+            tresult.append("8");
+
+        if (view.equals(nine))
+            tresult.append("9");
+
+        if (view.equals(zero))
+            tresult.append("0");
+
+        if (view.equals(plus))
+            tresult.append("+");
+
+        if (view.equals(minus))
+            tresult.append("-");
+
+        if (view.equals(mul))
+            tresult.append("*");
+
+        if (view.equals(div))
+            tresult.append("/");
+
+        if (view.equals(clear))
+            tresult.setText("");
+
+        if (view.equals(equal)) {
+
+
+            try {
+                String data = tresult.getText().toString();
+                if (data.contains("+")) {
+                    String[] operand = data.split("\\+");
+                    if (operand.length == 2) {
+                        double op1 = Double.parseDouble(operand[0]);
+                        double op2 = Double.parseDouble(operand[1]);
+                        double result = op1 + op2;
+                        tresult.setText("" + result);
+                    }
+                }
+                if (data.contains("-")) {
+                    String[] operand = data.split("-");
+                    if (operand.length == 2) {
+                        double op1 = Double.parseDouble(operand[0]);
+                        double op2 = Double.parseDouble(operand[1]);
+                        double result = op1 - op2;
+                        tresult.setText("" + result);
+                    }
+                }
+                if (data.contains("*")) {
+                    String[] operand = data.split("\\*");
+                    if (operand.length == 2) {
+                        double op1 = Double.parseDouble(operand[0]);
+                        double op2 = Double.parseDouble(operand[1]);
+                        double result = op1 * op2;
+                        tresult.setText("" + result);
+                    }
+                }
+                if (data.contains("/")) {
+                    String[] operand = data.split("/");
+                    if (operand.length == 2) {
+                        double op1 = Double.parseDouble(operand[0]);
+                        double op2 = Double.parseDouble(operand[1]);
+                        double result = op1 / op2;
+                        tresult.setText("" + result);
+                    }
+                }
+
+
+            } catch (NumberFormatException e) {
+                Toast.makeText(this, "invalid input", Toast.LENGTH_LONG).show();
+            }
+
+
+        }
+
+
+    }
+}
